@@ -1,7 +1,7 @@
 import tkinter as tk
-from tkinter import messagebox
 import requests
 import random
+import pyperclip
 
 def fetch_quote():
     response = requests.get("https://api.quotable.io/random")
@@ -22,13 +22,20 @@ def generate_email():
     email_text = f"Dear {customer_name},\n\n"
     email_text += "We are pleased to inform you that your shipment, '{}', with tracking ID '{}' has been dispatched.\n".format(shipment_name, tracking_id)
     email_text += "You can track your shipment by clicking on the following link:\n"
+    
     email_text += tracking_link + "\n\n"
+
+    email_text += "Please feel free to respond to this email if you need any additional information\n\n"
 
     quote = fetch_quote()
     email_text += quote
 
     email_text_box.delete("1.0", tk.END)
     email_text_box.insert(tk.END, email_text)
+
+def copy_to_clipboard():
+    email_text = email_text_box.get("1.0", tk.END)
+    pyperclip.copy(email_text)
 
 # Create GUI
 root = tk.Tk()
@@ -74,12 +81,16 @@ right_frame.pack(side=tk.RIGHT, padx=10, pady=10)
 email_text_label = tk.Label(right_frame, text="Email Text:")
 email_text_label.pack()
 
-email_text_box = tk.Text(right_frame, height=50, width=80)
+email_text_box = tk.Text(right_frame, height=25, width=60)
 email_text_box.pack()
 
 # Generate Button
 generate_button = tk.Button(left_frame, text="Generate Email", command=generate_email)
 generate_button.pack(pady=10)
+
+# Copy to Clipboard Button
+copy_button = tk.Button(left_frame, text="Copy to Clipboard", command=copy_to_clipboard)
+copy_button.pack()
 
 # Run the GUI
 root.mainloop()
