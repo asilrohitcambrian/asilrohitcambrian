@@ -27,36 +27,50 @@ def generate_email():
     quote = fetch_quote()
     email_text += quote
 
-    messagebox.showinfo("Email Text", email_text)
+    email_text_box.delete("1.0", tk.END)
+    email_text_box.insert(tk.END, email_text)
 
 # Create GUI
 root = tk.Tk()
 root.title("Email Generator")
 
-# Labels
-name_label = tk.Label(root, text="Customer Name:")
+# Left Frame (Input Boxes)
+left_frame = tk.Frame(root)
+left_frame.pack(side=tk.LEFT, padx=10, pady=10)
+
+name_label = tk.Label(left_frame, text="Customer Name:")
 name_label.pack()
-name_entry = tk.Entry(root)
+name_entry = tk.Entry(left_frame)
 name_entry.pack()
 
-id_label = tk.Label(root, text="Tracking ID:")
+id_label = tk.Label(left_frame, text="Tracking ID:")
 id_label.pack()
-id_entry = tk.Entry(root)
+id_entry = tk.Entry(left_frame)
 id_entry.pack()
 
-shipment_label = tk.Label(root, text="Shipment Name:")
+shipment_label = tk.Label(left_frame, text="Shipment Name:")
 shipment_label.pack()
-shipment_entry = tk.Entry(root)
+shipment_entry = tk.Entry(left_frame)
 shipment_entry.pack()
 
-link_label = tk.Label(root, text="Tracking Link:")
+link_label = tk.Label(left_frame, text="Tracking Link:")
 link_label.pack()
-link_entry = tk.Entry(root)
+link_entry = tk.Entry(left_frame)
 link_entry.pack()
+
+# Right Frame (Email Text Box)
+right_frame = tk.Frame(root)
+right_frame.pack(side=tk.RIGHT, padx=10, pady=10)
+
+email_text_label = tk.Label(right_frame, text="Email Text:")
+email_text_label.pack()
+
+email_text_box = tk.Text(right_frame, height=10, width=40)
+email_text_box.pack()
 
 # Button
 generate_button = tk.Button(root, text="Generate Email", command=generate_email)
-generate_button.pack()
+generate_button.pack(pady=10)
 
 # Run the GUI
 root.mainloop()
