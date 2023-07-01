@@ -65,7 +65,7 @@ right_frame.pack(side=tk.RIGHT, padx=10, pady=10)
 email_text_label = tk.Label(right_frame, text="Email Text:")
 email_text_label.pack()
 
-email_text_box = tk.Text(right_frame, height=10, width=40)
+email_text_box = tk.Text(right_frame, height=15, width=50)
 email_text_box.pack()
 
 # Button
