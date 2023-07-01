@@ -22,10 +22,9 @@ def generate_email():
     email_text = f"Dear {customer_name},\n\n"
     email_text += "We are pleased to inform you that your shipment, '{}', with tracking ID '{}' has been dispatched.\n".format(shipment_name, tracking_id)
     email_text += "You can track your shipment by clicking on the following link:\n"
-    
     email_text += tracking_link + "\n\n"
 
-    email_text += "Please feel free to respond to this email if you need any additional information\n\n"
+    email_text += "Please feel free to reach out to us at any time!\n\n"
 
     quote = fetch_quote()
     email_text += quote
@@ -44,11 +43,11 @@ root.title("Email Generator")
 # Logo
 logo_image = tk.PhotoImage(file="/Users/rohitasil/Documents/code base/dispatch_email_logi-removebg-preview.png")
 logo_label = tk.Label(root, image=logo_image)
-logo_label.place(x=10, y=10)
+logo_label.pack(side=tk.LEFT, padx=10, pady=10)
 
 # Heading
 heading_label = tk.Label(root, text="Dispatch Email Generator", font=("Arial", 16, "bold"))
-heading_label.place(x=150, y=10)
+heading_label.pack(pady=10)
 
 # Left Frame (Input Boxes)
 left_frame = tk.Frame(root)
@@ -81,7 +80,7 @@ right_frame.pack(side=tk.RIGHT, padx=10, pady=10)
 email_text_label = tk.Label(right_frame, text="Email Text:")
 email_text_label.pack()
 
-email_text_box = tk.Text(right_frame, height=25, width=60)
+email_text_box = tk.Text(right_frame, height=15, width=50)
 email_text_box.pack()
 
 # Generate Button
