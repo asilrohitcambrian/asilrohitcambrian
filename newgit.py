@@ -34,6 +34,15 @@ def generate_email():
 root = tk.Tk()
 root.title("Email Generator")
 
+# Logo
+logo_image = tk.PhotoImage(file="/Users/rohitasil/Documents/code base/dispatch_email_logi-removebg-preview.png")
+logo_label = tk.Label(root, image=logo_image)
+logo_label.place(x=10, y=10)
+
+# Heading
+heading_label = tk.Label(root, text="Dispatch Email Generator", font=("Arial", 16, "bold"))
+heading_label.place(x=150, y=10)
+
 # Left Frame (Input Boxes)
 left_frame = tk.Frame(root)
 left_frame.pack(side=tk.LEFT, padx=10, pady=10)
@@ -65,17 +74,12 @@ right_frame.pack(side=tk.RIGHT, padx=10, pady=10)
 email_text_label = tk.Label(right_frame, text="Email Text:")
 email_text_label.pack()
 
-email_text_box = tk.Text(right_frame, height=100, width=100)
+email_text_box = tk.Text(right_frame, height=50, width=80)
 email_text_box.pack()
 
 # Generate Button
 generate_button = tk.Button(left_frame, text="Generate Email", command=generate_email)
 generate_button.pack(pady=10)
-
-# Image
-unicorn_image = tk.PhotoImage(file="/Users/rohitasil/Documents/code base/unicorn.png")
-unicorn_label = tk.Label(right_frame, image=unicorn_image)
-unicorn_label.pack(side=tk.BOTTOM, padx=10, pady=10)
 
 # Run the GUI
 root.mainloop()
